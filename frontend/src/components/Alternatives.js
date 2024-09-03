@@ -1,28 +1,33 @@
 import React from 'react';
-import { Typography, Box, Grid } from '@mui/material';
+import { Typography, Box, ImageList, ImageListItem } from '@mui/material';
 
 const Alternatives = () => {
-  const reasons = [
-    'Feature Reason 1',
-    'Feature Reason 2',
-    'Feature Reason 3',
+  const images = [
+    '/images/website/no_surprises.png',
+    '/images/website/porr_quality.png',
+    '/images/website/mess.png',
   ];
 
   return (
     <Box sx={{ my: 4 }}>
       <Typography variant="h4" gutterBottom>
-        Why alternatives won't work for you
+        Don't settle for the stress and disappointment of working with others . . .
       </Typography>
       <Typography variant="h6" gutterBottom>
-        Why most Concrete companies lead to nowhere
+        Avoid headaches with one simple call
       </Typography>
-      <Grid container spacing={2}>
-        {reasons.map((reason, index) => (
-          <Grid item xs={12} key={index}>
-            <Typography variant="body1">{reason}</Typography>
-          </Grid>
+      <ImageList sx={{ width: '100%', height: 'auto' }} cols={3} rowHeight="auto">
+        {images.map((img, index) => (
+          <ImageListItem key={index}>
+            <img
+              src={img}
+              alt={`Alternative ${index + 1}`}
+              loading="lazy"
+              style={{ width: '100%', height: 'auto' }}
+            />
+          </ImageListItem>
         ))}
-      </Grid>
+      </ImageList>
     </Box>
   );
 };

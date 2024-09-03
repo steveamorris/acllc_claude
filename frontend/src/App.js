@@ -7,7 +7,7 @@ import ProblemFraming from './components/ProblemFraming';
 import SolutionFraming from './components/SolutionFraming';
 import SolutionDetails from './components/SolutionDetails';
 import Video from './components/Video';
-import OutcomeFraming from './components/OutcomeFraming';
+import OutcomeFraming from './components/OutcomeFramings';
 import Credibility from './components/Credibility';
 import Alternatives from './components/Alternatives';
 import About from './components/About';

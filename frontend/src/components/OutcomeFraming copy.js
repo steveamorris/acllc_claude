@@ -6,13 +6,13 @@ const OutcomeFraming = () => {
 
   return (
     <Box sx={{ my: 4 }}>
+      <Typography variant="h1" gutterBottom>
+      Built to Last, Delivered with Care.
+      </Typography>
+      <Typography variant="h2" gutterBottom>
+      Your Vision, Our Precision.
+      </Typography>
       <Typography variant="h4" gutterBottom>
-        Outcome Framing
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        Get the outcome you expect
-      </Typography>
-      <Typography variant="body1" gutterBottom>
         Lorem ipsum outcome framing statement all the services
       </Typography>
       <Grid container spacing={2} sx={{ mt: 2 }}>

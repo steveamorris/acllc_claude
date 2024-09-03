@@ -12,9 +12,9 @@ const SolutionDetail = ({ title, description }) => (
 
 const SolutionDetails = () => {
   const solutions = [
-    { title: 'Solution Name 1', description: 'Description 1' },
-    { title: 'Solution Name 2', description: 'Description 2' },
-    { title: 'Solution Name 3', description: 'Description 3' },
+    { title: 'We Focus on High Quality', description: 'We are not wasteful, but we error on the side of over-engineering.' },
+    { title: 'We agree on a Fair Price', description: 'We are not the cheapest, but we are competitive.' },
+    { title: 'We Maintain a Tidy Worksite', description: 'We maximize cleanliness, and minimize site disruption.' },
   ];
 
   return (

@@ -3,20 +3,17 @@ import { Typography, Box, Grid } from '@mui/material';
 
 const ProblemFraming = () => {
   const clientProblems = [
-    'Client problem 1',
-    'Client problem 2',
-    'Client problem 3',
-    'Client problem 4',
-    'Client problem 5',
+    '**Stress:**',
+    '**Disappointment:**',
+    '**Anger:**',
+    '**Anxiety:**',
+    ' **Inconvenience:**',
   ];
 
   return (
     <Box sx={{ my: 4 }}>
       <Typography variant="h4" gutterBottom>
-        Problem Framing
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        Client Problem Statement
+        You need a new driveway, but what can go wrong?
       </Typography>
       <Grid container spacing={2}>
         {clientProblems.map((problem, index) => (
@@ -25,9 +22,6 @@ const ProblemFraming = () => {
           </Grid>
         ))}
       </Grid>
-      <Typography variant="body2" sx={{ mt: 2 }}>
-        At least 3 or 5 that customer can say YES to
-      </Typography>
     </Box>
   );
 };
