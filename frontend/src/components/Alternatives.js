@@ -10,6 +10,7 @@ const Alternatives = () => {
 
   return (
     <Box sx={{ my: 4 }}>
+      <Typography variant="h4" gutterBottom>Don't use the Alternatives!</Typography>
       <Typography variant="h4" gutterBottom>
         Don't settle for the stress and disappointment of working with others . . .
       </Typography>

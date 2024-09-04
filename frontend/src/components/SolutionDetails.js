@@ -19,6 +19,11 @@ const SolutionDetails = () => {
 
   return (
     <Box sx={{ my: 4 }}>
+            <Box sx={{ my: 4, textAlign: 'left' }}>
+      <Typography variant="h6" component="h1" gutterBottom>
+      Solution Details Section
+      </Typography>
+      </Box>
       <Grid container spacing={2}>
         {solutions.map((solution, index) => (
           <Grid item xs={12} sm={4} key={index}>

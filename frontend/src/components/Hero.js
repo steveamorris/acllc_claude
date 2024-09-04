@@ -4,6 +4,11 @@ import { Typography, Box } from '@mui/material';
 const Hero = () => {
   return (
     <Box sx={{ my: 4, textAlign: 'center' }}>
+      <Box sx={{ my: 4, textAlign: 'left' }}>
+      <Typography variant="h6" component="h1" gutterBottom>
+      Hero Section
+      </Typography>
+      </Box>
       <Typography variant="h3" component="h1" gutterBottom>
       Professionally Installed 
       </Typography>

@@ -4,6 +4,11 @@ import { Typography, Box } from '@mui/material';
 const SolutionFraming = () => {
   return (
     <Box sx={{ my: 4 }}>
+      <Box sx={{ my: 4, textAlign: 'left' }}>
+      <Typography variant="h6" component="h1" gutterBottom>
+      Solution Framing Section
+      </Typography>
+      </Box>
       <Typography variant="h4" gutterBottom>
         We don't want the headaches anymore than you do
       </Typography>

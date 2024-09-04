@@ -4,6 +4,7 @@ import { Typography, Box } from '@mui/material';
 const MoreTestimonials = () => {
   return (
     <Box sx={{ my: 4, bgcolor: 'grey.200', p: 3 }}>
+      <Typography variant="h4" gutterBottom>Testimonials Again</Typography>
       <Typography variant="h5" gutterBottom align="center">
         Testimonials
       </Typography>

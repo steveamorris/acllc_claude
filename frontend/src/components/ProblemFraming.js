@@ -12,6 +12,11 @@ const ProblemFraming = () => {
 
   return (
     <Box sx={{ my: 4 }}>
+            <Box sx={{ my: 4, textAlign: 'left' }}>
+      <Typography variant="h6" component="h1" gutterBottom>
+      Problem Framing Section
+      </Typography>
+      </Box>
       <Typography variant="h4" gutterBottom>
         You need a new driveway, but what can go wrong?
       </Typography>

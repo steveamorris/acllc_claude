@@ -20,6 +20,10 @@ import Footer from './components/Footer';
 import AlternativesCRUD from './components/crud/AlternativesCRUD';
 import OutcomeFramingsCRUD from './components/crud/OutcomeFramingsCRUD';
 import FAQCRUD from './components/crud/FAQCRUD';
+import CustomerTypesCRUD from './components/crud/CustomerTypesCRUD';
+import ServiceTypesCRUD from './components/crud/ServiceTypesCRUD';
+import SolutionDetailsCRUD from './components/crud/SolutionDetailsCRUD';
+import ProblemFramingCRUD from './components/crud/ProblemFramingCRUD';
 
 class App extends React.Component {
   constructor(props) {
@@ -45,6 +49,10 @@ class App extends React.Component {
             <Tab label="Alternatives CRUD" />
             <Tab label="Outcome Framings CRUD" />
             <Tab label="FAQ CRUD" />
+            <Tab label="Customer Types CRUD" />
+            <Tab label="Service Types CRUD" />
+            <Tab label="Solution Details CRUD" />
+            <Tab label="Problem Framing CRUD" />
           </Tabs>
         </Box>
         {tabValue === 0 && (
@@ -67,6 +75,10 @@ class App extends React.Component {
         {tabValue === 1 && <AlternativesCRUD />}
         {tabValue === 2 && <OutcomeFramingsCRUD />}
         {tabValue === 3 && <FAQCRUD />}
+        {tabValue === 4 && <CustomerTypesCRUD />}
+        {tabValue === 5 && <ServiceTypesCRUD />}
+        {tabValue === 6 && <SolutionDetailsCRUD />}
+        {tabValue === 7 && <ProblemFramingCRUD />}
         <Footer />
       </div>
     );
