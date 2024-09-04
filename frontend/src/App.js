@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { Tabs, Tab, Box } from '@mui/material';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Testimonials from './components/Testimonials';
@@ -16,33 +16,61 @@ import MoreTestimonials from './components/MoreTestimonials';
 import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 
-const theme = createTheme();
+// Import CRUD components
+import AlternativesCRUD from './components/crud/AlternativesCRUD';
+import OutcomeFramingsCRUD from './components/crud/OutcomeFramingsCRUD';
+import FAQCRUD from './components/crud/FAQCRUD';
 
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Container maxWidth="lg">
-        <Box sx={{ my: 4 }}>
-          <Header />
-          <Hero />
-          <Testimonials />
-          <ProblemFraming />
-          <SolutionFraming />
-          <SolutionDetails />
-          <Video />
-          <OutcomeFraming />
-          <Credibility />
-          <Alternatives />
-          <About />
-          <FAQ />
-          <MoreTestimonials />
-          <CallToAction />
-          <Footer />
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tabValue: 0
+    };
+  }
+
+  handleTabChange = (event, newValue) => {
+    this.setState({ tabValue: newValue });
+  };
+
+  render() {
+    const { tabValue } = this.state;
+
+    return (
+      <div className="app">
+        <Header />
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <Tabs value={tabValue} onChange={this.handleTabChange} centered>
+            <Tab label="Main Content" />
+            <Tab label="Alternatives CRUD" />
+            <Tab label="Outcome Framings CRUD" />
+            <Tab label="FAQ CRUD" />
+          </Tabs>
         </Box>
-      </Container>
-    </ThemeProvider>
-  );
+        {tabValue === 0 && (
+          <>
+            <Hero />
+            <Testimonials />
+            <ProblemFraming />
+            <SolutionFraming />
+            <SolutionDetails />
+            <Video />
+            <OutcomeFraming />
+            <Credibility />
+            <Alternatives />
+            <About />
+            <FAQ />
+            <MoreTestimonials />
+            <CallToAction />
+          </>
+        )}
+        {tabValue === 1 && <AlternativesCRUD />}
+        {tabValue === 2 && <OutcomeFramingsCRUD />}
+        {tabValue === 3 && <FAQCRUD />}
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;

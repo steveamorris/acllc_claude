@@ -1,19 +1,34 @@
-import React from 'react';
-import { Typography, Box, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const FAQ = () => {
-  const faqs = [
-    { question: 'Everything you need to know before we get started', answer: 'Answer goes here...' },
-    { question: 'What are the biggest mistakes they could make that would lead them somewhere else', answer: 'Answer goes here...' },
-  ];
+  const [faqs, setFaqs] = useState([]);
+
+  useEffect(() => {
+    fetchFaqs();
+  }, []);
+
+  const fetchFaqs = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/faqs');
+      const data = await response.json();
+      setFaqs(data);
+    } catch (error) {
+      console.error('Error fetching FAQs:', error);
+    }
+  };
 
   return (
-    <Box sx={{ my: 4 }}>
-      <Typography variant="h4" gutterBottom>FAQ</Typography>
+    <div>
+      <Typography variant="h4" gutterBottom>Frequently Asked Questions</Typography>
       {faqs.map((faq, index) => (
-        <Accordion key={index}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <Accordion key={faq.id}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls={`panel${index + 1}-content`}
+            id={`panel${index + 1}-header`}
+          >
             <Typography>{faq.question}</Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -21,7 +36,7 @@ const FAQ = () => {
           </AccordionDetails>
         </Accordion>
       ))}
-    </Box>
+    </div>
   );
 };
 
