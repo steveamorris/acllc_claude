@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Typography } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
+import { API_BASE_URL } from '../../config';
 
 class OutcomeFramingsCRUD extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class OutcomeFramingsCRUD extends React.Component {
 
   fetchOutcomeFramings = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/outcomeframings');
+      const response = await fetch(`${API_BASE_URL}/api/outcomeframings`);
       const data = await response.json();
       this.setState({ outcomeFramings: data });
     } catch (error) {
@@ -33,14 +34,14 @@ class OutcomeFramingsCRUD extends React.Component {
     try {
       if (editingId) {
         // Update existing outcome framing
-        await fetch(`http://localhost:5000/api/outcomeframings/${editingId}`, {
+        await fetch(`${API_BASE_URL}/api/outcomeframings/${editingId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ title, description }),
         });
       } else {
         // Create new outcome framing
-        await fetch('http://localhost:5000/api/outcomeframings', {
+        await fetch(`${API_BASE_URL}/api/outcomeframings`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ title, description }),
@@ -63,7 +64,7 @@ class OutcomeFramingsCRUD extends React.Component {
 
   handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/outcomeframings/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/api/outcomeframings/${id}`, { method: 'DELETE' });
       this.fetchOutcomeFramings();
     } catch (error) {
       console.error('Error deleting outcome framing:', error);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config';
 
 const ProblemFramingCRUD = () => {
   const [problemFramings, setProblemFramings] = useState([]);
@@ -16,7 +17,7 @@ const ProblemFramingCRUD = () => {
 
   const fetchProblemFramings = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/problem-framing');
+      const response = await axios.get(`${API_BASE_URL}/api/problem-framing`);
       setProblemFramings(response.data);
     } catch (error) {
       console.error('Error fetching problem framings:', error);
@@ -27,9 +28,9 @@ const ProblemFramingCRUD = () => {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/problem-framing/${editingId}`, { title, description });
+        await axios.put(`${API_BASE_URL}/api/problem-framing/${editingId}`, { title, description });
       } else {
-        await axios.post('http://localhost:5000/api/problem-framing', { title, description });
+        await axios.post(`${API_BASE_URL}/api/problem-framing`, { title, description });
       }
       fetchProblemFramings();
       setTitle('');
@@ -50,7 +51,7 @@ const ProblemFramingCRUD = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/problem-framing/${id}`);
+      await axios.delete(`${API_BASE_URL}/api/problem-framing/${id}`);
       fetchProblemFramings();
     } catch (error) {
       console.error('Error deleting problem framing:', error);

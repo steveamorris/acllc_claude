@@ -1,5 +1,7 @@
 import React from 'react';
-import { Tabs, Tab, Box } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline, Tabs, Tab, Box, Container, Grid, Paper } from '@mui/material';
+import theme from './theme';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Testimonials from './components/Testimonials';
@@ -25,64 +27,104 @@ import ServiceTypesCRUD from './components/crud/ServiceTypesCRUD';
 import SolutionDetailsCRUD from './components/crud/SolutionDetailsCRUD';
 import ProblemFramingCRUD from './components/crud/ProblemFramingCRUD';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tabValue: 0
-    };
-  }
+const App = () => {
+  const [tabValue, setTabValue] = React.useState(0);
 
-  handleTabChange = (event, newValue) => {
-    this.setState({ tabValue: newValue });
+  const handleTabChange = (event, newValue) => {
+    setTabValue(newValue);
   };
 
-  render() {
-    const { tabValue } = this.state;
-
-    return (
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <div className="app">
         <Header />
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={tabValue} onChange={this.handleTabChange} centered>
-            <Tab label="Main Content" />
-            <Tab label="Alternatives CRUD" />
-            <Tab label="Outcome Framings CRUD" />
-            <Tab label="FAQ CRUD" />
-            <Tab label="Customer Types CRUD" />
-            <Tab label="Service Types CRUD" />
-            <Tab label="Solution Details CRUD" />
-            <Tab label="Problem Framing CRUD" />
-          </Tabs>
-        </Box>
-        {tabValue === 0 && (
-          <>
-            <Hero />
-            <Testimonials />
-            <ProblemFraming />
-            <SolutionFraming />
-            <SolutionDetails />
-            <Video />
-            <OutcomeFraming />
-            <Credibility />
-            <Alternatives />
-            <About />
-            <FAQ />
-            <MoreTestimonials />
-            <CallToAction />
-          </>
-        )}
-        {tabValue === 1 && <AlternativesCRUD />}
-        {tabValue === 2 && <OutcomeFramingsCRUD />}
-        {tabValue === 3 && <FAQCRUD />}
-        {tabValue === 4 && <CustomerTypesCRUD />}
-        {tabValue === 5 && <ServiceTypesCRUD />}
-        {tabValue === 6 && <SolutionDetailsCRUD />}
-        {tabValue === 7 && <ProblemFramingCRUD />}
+        <Container maxWidth="lg">
+          <Box sx={{ my: 4 }}>
+            <Paper elevation={2}>
+              <Tabs value={tabValue} onChange={handleTabChange} centered variant="fullWidth">
+                <Tab label="Main Content" />
+                <Tab label="Alternatives CRUD" />
+                <Tab label="Outcome Framings CRUD" />
+                <Tab label="FAQ CRUD" />
+                <Tab label="Customer Types CRUD" />
+                <Tab label="Service Types CRUD" />
+                <Tab label="Solution Details CRUD" />
+                <Tab label="Problem Framing CRUD" />
+              </Tabs>
+            </Paper>
+          </Box>
+          {tabValue === 0 && (
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Paper elevation={3}>
+                  <Hero />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Paper elevation={2}>
+                  <ProblemFraming />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Paper elevation={2}>
+                  <Testimonials />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <Paper elevation={2}>
+                  <SolutionFraming />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <SolutionDetails />
+              </Grid>
+              <Grid item xs={12}>
+                <Video />
+              </Grid>
+              <Grid item xs={12}>
+                <Paper elevation={2}>
+                  <OutcomeFraming />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <Credibility />
+              </Grid>
+              <Grid item xs={12}>
+                <Paper elevation={2}>
+                  <Alternatives />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <About />
+              </Grid>
+              <Grid item xs={12}>
+                <Paper elevation={2}>
+                  <FAQ />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <MoreTestimonials />
+              </Grid>
+              <Grid item xs={12}>
+                <Paper elevation={3}>
+                  <CallToAction />
+                </Paper>
+              </Grid>
+            </Grid>
+          )}
+          {tabValue === 1 && <AlternativesCRUD />}
+          {tabValue === 2 && <OutcomeFramingsCRUD />}
+          {tabValue === 3 && <FAQCRUD />}
+          {tabValue === 4 && <CustomerTypesCRUD />}
+          {tabValue === 5 && <ServiceTypesCRUD />}
+          {tabValue === 6 && <SolutionDetailsCRUD />}
+          {tabValue === 7 && <ProblemFramingCRUD />}
+        </Container>
         <Footer />
       </div>
-    );
-  }
+    </ThemeProvider>
+  );
 }
 
 export default App;

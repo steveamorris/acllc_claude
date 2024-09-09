@@ -30,12 +30,15 @@ This document compares the tables in the database with the available CRUD compon
 3. FAQCRUD.js
 4. OutcomeFramingsCRUD.js
 5. ServiceTypesCRUD.js
+1. solution_detail
 
 ## Missing CRUD Components
 
 The following tables do not have corresponding CRUD components in the frontend:
 
-1. solution_detail
+Let's create a CRUD Component for the `problem_framing` table.
+
+
 2. problem_framing
 3. Heros
 4. Testimonials

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config';
 
 const SolutionDetailsCRUD = () => {
   const [solutionDetails, setSolutionDetails] = useState([]);
@@ -16,7 +17,7 @@ const SolutionDetailsCRUD = () => {
 
   const fetchSolutionDetails = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/solution-details');
+      const response = await axios.get(`${API_BASE_URL}/api/solution-details`);
       setSolutionDetails(response.data);
     } catch (error) {
       console.error('Error fetching solution details:', error);
@@ -27,9 +28,9 @@ const SolutionDetailsCRUD = () => {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/solution-details/${editingId}`, { title, description });
+        await axios.put(`${API_BASE_URL}/api/solution-details/${editingId}`, { title, description });
       } else {
-        await axios.post('http://localhost:5000/api/solution-details', { title, description });
+        await axios.post(`${API_BASE_URL}/api/solution-details`, { title, description });
       }
       fetchSolutionDetails();
       setTitle('');
@@ -50,7 +51,7 @@ const SolutionDetailsCRUD = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/solution-details/${id}`);
+      await axios.delete(`${API_BASE_URL}/api/solution-details/${id}`);
       fetchSolutionDetails();
     } catch (error) {
       console.error('Error deleting solution detail:', error);

@@ -15,8 +15,7 @@ import {
   DialogTitle 
 } from '@mui/material';
 import axios from 'axios';
-
-const API_BASE_URL = 'http://localhost:5000'; // Add this line
+import { API_BASE_URL } from '../../config';
 
 const CustomerTypesCRUD = () => {
   const [customerTypes, setCustomerTypes] = useState([]);

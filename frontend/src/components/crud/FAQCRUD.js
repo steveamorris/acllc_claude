@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Typography } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
+import { API_BASE_URL } from '../../config';
 
 class FAQCRUD extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class FAQCRUD extends React.Component {
 
   fetchFaqs = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/faqs');
+      const response = await fetch(`${API_BASE_URL}/api/faqs`);
       const data = await response.json();
       this.setState({ faqs: data });
     } catch (error) {
@@ -33,14 +34,14 @@ class FAQCRUD extends React.Component {
     try {
       if (editingId) {
         // Update existing FAQ
-        await fetch(`http://localhost:5000/api/faqs/${editingId}`, {
+        await fetch(`${API_BASE_URL}/api/faqs/${editingId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ question, answer }),
         });
       } else {
         // Create new FAQ
-        await fetch('http://localhost:5000/api/faqs', {
+        await fetch(`${API_BASE_URL}/api/faqs`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ question, answer }),
@@ -63,7 +64,7 @@ class FAQCRUD extends React.Component {
 
   handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/faqs/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/api/faqs/${id}`, { method: 'DELETE' });
       this.fetchFaqs();
     } catch (error) {
       console.error('Error deleting FAQ:', error);
@@ -74,7 +75,7 @@ class FAQCRUD extends React.Component {
     const { faqs, question, answer, editingId } = this.state;
     return (
       <div>
-        <Typography variant="h4" gutterBottom>FAQs</Typography>
+        <Typography variant="h4" gutterBottom>FAQs - Questions that have answers that will lead the client away.</Typography>
         <form onSubmit={this.handleSubmit}>
           <TextField
             label="Question"

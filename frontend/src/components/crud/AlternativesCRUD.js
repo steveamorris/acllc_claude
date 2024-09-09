@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Typography } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
+import { API_BASE_URL } from '../../config';
 
 class AlternativesCRUD extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class AlternativesCRUD extends React.Component {
 
   fetchAlternatives = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/alternatives');
+      const response = await fetch(`${API_BASE_URL}/api/alternatives`);
       const data = await response.json();
       this.setState({ alternatives: data });
     } catch (error) {
@@ -33,14 +34,14 @@ class AlternativesCRUD extends React.Component {
     try {
       if (editingId) {
         // Update existing alternative
-        await fetch(`http://localhost:5000/api/alternatives/${editingId}`, {
+        await fetch(`${API_BASE_URL}/api/alternatives/${editingId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ title, description }),
         });
       } else {
         // Create new alternative
-        await fetch('http://localhost:5000/api/alternatives', {
+        await fetch(`${API_BASE_URL}/api/alternatives`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ title, description }),
@@ -63,7 +64,7 @@ class AlternativesCRUD extends React.Component {
 
   handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/alternatives/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/api/alternatives/${id}`, { method: 'DELETE' });
       this.fetchAlternatives();
     } catch (error) {
       console.error('Error deleting alternative:', error);

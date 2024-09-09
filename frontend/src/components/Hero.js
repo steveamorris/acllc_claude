@@ -9,10 +9,10 @@ const Hero = () => {
       Hero Section
       </Typography>
       </Box>
-      <Typography variant="h3" component="h1" gutterBottom>
+      <Typography variant="h1" component="h1" gutterBottom>
       Professionally Installed 
       </Typography>
-      <Typography variant="h3" component="h1" gutterBottom>
+      <Typography variant="h1" component="h1" gutterBottom>
       Concrete Structures 
       </Typography>
       <Typography variant="h5" component="h2" gutterBottom>
