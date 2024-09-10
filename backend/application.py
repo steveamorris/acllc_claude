@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -45,6 +46,17 @@ class ProblemFraming(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=False)
+
+class Testimonial(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    client_name = db.Column(db.String(100), nullable=False)
+    client_company = db.Column(db.String(100))
+    testimonial_text = db.Column(db.Text, nullable=False)
+    rating = db.Column(db.Integer)
+    date_given = db.Column(db.Date)
+    featured = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 @app.route('/api/alternatives', methods=['GET', 'POST'])
 def handle_alternatives():
@@ -231,6 +243,61 @@ def handle_problem_framing_item(id):
         db.session.delete(problem_framing)
         db.session.commit()
         return jsonify({"message": "Problem Framing deleted successfully"})
+
+@app.route('/api/testimonials', methods=['GET', 'POST'])
+def handle_testimonials():
+    if request.method == 'POST':
+        data = request.json
+        new_testimonial = Testimonial(
+            client_name=data['client_name'],
+            client_company=data['client_company'],
+            testimonial_text=data['testimonial_text'],
+            rating=data['rating'],
+            date_given=datetime.strptime(data['date_given'], '%Y-%m-%d').date(),
+            featured=data['featured']
+        )
+        db.session.add(new_testimonial)
+        db.session.commit()
+        return jsonify({"message": "Testimonial created successfully"}), 201
+    else:
+        testimonials = Testimonial.query.all()
+        return jsonify([{
+            "id": t.id,
+            "client_name": t.client_name,
+            "client_company": t.client_company,
+            "testimonial_text": t.testimonial_text,
+            "rating": t.rating,
+            "date_given": t.date_given.isoformat() if t.date_given else None,
+            "featured": t.featured
+        } for t in testimonials])
+
+@app.route('/api/testimonials/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def handle_testimonial(id):
+    testimonial = Testimonial.query.get_or_404(id)
+    if request.method == 'GET':
+        return jsonify({
+            "id": testimonial.id,
+            "client_name": testimonial.client_name,
+            "client_company": testimonial.client_company,
+            "testimonial_text": testimonial.testimonial_text,
+            "rating": testimonial.rating,
+            "date_given": testimonial.date_given.isoformat() if testimonial.date_given else None,
+            "featured": testimonial.featured
+        })
+    elif request.method == 'PUT':
+        data = request.json
+        testimonial.client_name = data['client_name']
+        testimonial.client_company = data['client_company']
+        testimonial.testimonial_text = data['testimonial_text']
+        testimonial.rating = data['rating']
+        testimonial.date_given = datetime.strptime(data['date_given'], '%Y-%m-%d').date()
+        testimonial.featured = data['featured']
+        db.session.commit()
+        return jsonify({"message": "Testimonial updated successfully"})
+    elif request.method == 'DELETE':
+        db.session.delete(testimonial)
+        db.session.commit()
+        return jsonify({"message": "Testimonial deleted successfully"})
 
 if __name__ == '__main__':
     with app.app_context():

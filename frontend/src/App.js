@@ -26,6 +26,7 @@ import CustomerTypesCRUD from './components/crud/CustomerTypesCRUD';
 import ServiceTypesCRUD from './components/crud/ServiceTypesCRUD';
 import SolutionDetailsCRUD from './components/crud/SolutionDetailsCRUD';
 import ProblemFramingCRUD from './components/crud/ProblemFramingCRUD';
+import TestimonialsCRUD from './components/crud/TestimonialsCRUD';
 
 const App = () => {
   const [tabValue, setTabValue] = React.useState(0);
@@ -51,6 +52,7 @@ const App = () => {
                 <Tab label="Service Types CRUD" />
                 <Tab label="Solution Details CRUD" />
                 <Tab label="Problem Framing CRUD" />
+                <Tab label="Testimonials CRUD" />
               </Tabs>
             </Paper>
           </Box>
@@ -120,6 +122,7 @@ const App = () => {
           {tabValue === 5 && <ServiceTypesCRUD />}
           {tabValue === 6 && <SolutionDetailsCRUD />}
           {tabValue === 7 && <ProblemFramingCRUD />}
+          {tabValue === 8 && <TestimonialsCRUD />}
         </Container>
         <Footer />
       </div>
